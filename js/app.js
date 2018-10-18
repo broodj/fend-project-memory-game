@@ -25,7 +25,15 @@ function shuffle(array) {
     return array;
 }
 
+let cards = document.querySelectorAll('.card');
 
+
+cards.forEach(function(card){
+    card.addEventListener('click', function(){
+        card.classList.add('open','show');
+    });
+});
+//
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
