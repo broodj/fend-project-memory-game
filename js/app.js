@@ -24,15 +24,72 @@ function shuffle(array) {
 
     return array;
 }
+//grab all cards
+let allCards = document.querySelectorAll('.card');
+let openCards = [];
 
-let cards = document.querySelectorAll('.card');
-
-
-cards.forEach(function(card){
+allCards.forEach(function(card){
     card.addEventListener('click', function(){
-        card.classList.add('open','show');
+        showCard(card);
+        pushToArray(card);
+        
+        
+        changeCard(card);
+
+
+        clearArray();
+        console.log(openCards);
     });
+
+    
 });
+
+//setTimeout(function(){
+
+//}, 1000);
+
+
+//if (openCards[0].type === openCards[1].type){
+
+//}
+
+//show the card
+function showCard(event){
+    event.classList.add('open','show','disabled');
+}
+
+//hide the card
+function hideCard(event){
+    event.classList.remove('open','show','disabled');
+}
+
+//flip after timeout
+function changeCard(card) {
+    setTimeout(function() {
+      hideCard(card);
+    }, 1000); 
+}
+
+//push to array
+function pushToArray(event){
+    openCards.push(event);
+}
+
+//check for match
+function checkMatch(){
+    //to do
+}
+
+//change card to match background
+function makeMatch(event){
+    //to do
+}
+
+function clearArray(){
+    openCards = [];
+}
+
+
 //
 /*
  * set up the event listener for a card. If a card is clicked:
