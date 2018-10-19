@@ -85,20 +85,22 @@ function compareCards(){
             matched++
             // check for win condition
             console.log('match');
+        } else {
+            setTimeout(function(event){
+                toggleCard(openCards[0]);
+                toggleCard(openCards[1]);
+                clearArray();
+            }, 1000)
         }
-
+        
     }
 
 //
 }
+
 //push to array
 function pushToArray(event){
     openCards.push(event);
-}
-
-//change card to match background
-function makeMatch(event){
-    //to do
 }
 
 function clearArray(){
