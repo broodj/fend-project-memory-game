@@ -25,59 +25,75 @@ function shuffle(array) {
     return array;
 }
 //grab all cards
-let allCards = document.querySelectorAll('.card');
+//let allCards = document.querySelectorAll('.card');
+
+
+const deck = document.querySelector('.deck');
 let openCards = [];
+let matched = 0;
+const FINAL_PAIRS = 8;
 
-allCards.forEach(function(card){
-    card.addEventListener('click', function(){
-        showCard(card);
-        pushToArray(card);
-        
-        
-        changeCard(card);
+deck.addEventListener('click', function(event){
+    let target = event.target;
 
-
-        clearArray();
-        console.log(openCards);
-    });
-
-    
+    if (isClickValid(target)){
+        //startTimer();
+    }
+    toggleCard(target);
 });
 
-//setTimeout(function(){
-
-//}, 1000);
-
-
-//if (openCards[0].type === openCards[1].type){
-
-//}
+//check if a card can be clicked
+function isClickValid(target){
+    //evaluate:
+    return (
+        //target has a class of card AND 
+        target.classList.contains('card') &&
+        //target does NOT have class of match AND
+        !target.classList.contains('match') &&
+        //openCards contains less than 2 items AND
+        openCards.length < 2 && 
+        //flippedCards does NOT contain current target
+        !openCards.includes(target)
+    )
+}
 
 //show the card
-function showCard(event){
-    event.classList.add('open','show','disabled');
-}
-
-//hide the card
-function hideCard(event){
-    event.classList.remove('open','show','disabled');
-}
-
-//flip after timeout
-function changeCard(card) {
-    setTimeout(function() {
-      hideCard(card);
-    }, 1000); 
-}
-
-//push to array
-function pushToArray(event){
-    openCards.push(event);
+function toggleCard(target){
+    target.classList.toggle('open');
+    target.classList.toggle('show');
+    pushToArray(target);
+    compareCards();
 }
 
 //check for match
-function checkMatch(){
-    //to do
+function compareCards(){
+//if openCards has exactly 2 items
+    if(openCards.length === 2){
+        // add 1 to move Counter
+        //addMoves();
+        //check star rating
+        //checkMoves();
+        //if the first element of cardOne is EXACTLY the same as cardTwo
+        if(openCards[0].firstElementChild.className === openCards[1].firstElementChild.className){
+            //toggle match for cardOne
+            openCards[0].classList.toggle('match');
+            //toggle match for cardTwo
+            openCards[1].classList.toggle('match');
+            //clear openCards
+            clearArray();
+            //total matched = n+1
+            matched++
+            // check for win condition
+            console.log('match');
+        }
+
+    }
+
+//
+}
+//push to array
+function pushToArray(event){
+    openCards.push(event);
 }
 
 //change card to match background
