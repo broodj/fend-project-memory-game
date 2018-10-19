@@ -19,15 +19,14 @@ let cards = ['fa-diamond','fa-diamond',
  */
 
 function initGame(){
-    //resetMoves();
-    //resetTimer();
-    //shuffleDeck();
+    resetCards();
+    resetMoves();
 
     var deck = document.querySelector('.deck');
     var cardHTML = shuffle(cards).map(function(card){
         return generateCard(card);
     });
-    //shuffle(deck);
+
     deck.innerHTML = cardHTML.join('');
 }
 
@@ -53,8 +52,7 @@ function shuffle(array) {
 
     return array;
 }
-//grab all cards
-//let allCards = document.querySelectorAll('.card');
+
 
 
 const deck = document.querySelector('.deck');
@@ -114,7 +112,10 @@ function compareCards(){
             clearArray();
             //total matched = n+1
             matched++
-            // check for win condition
+            //check for win condition
+            if (matched === FINAL_PAIRS){
+                gameOver();
+            }
             console.log('match');
         } else {
             setTimeout(function(event){
@@ -124,6 +125,32 @@ function compareCards(){
             }, 1000)
         }   
     }
+}
+
+//gameOver function
+function gameOver(){
+    toggleModal();
+    resetCards();
+    resetMoves();
+}
+
+//reset classes of cards back to just card
+function resetCards(){
+    const cards = document.querySelectorAll('.deck li');
+    for (let card of cards){
+        card.className = 'card';
+    }
+}
+
+//toggle display of congratulations modal
+function toggleModal(){
+    let modal = document.querySelector('.modalBackground');
+    modal.classList.toggle('hide');
+}
+
+function resetMoves(){
+    let moveCounter = document.querySelector('.moves');
+    moveCounter.innerText = 0;
 }
 
 //push to array
