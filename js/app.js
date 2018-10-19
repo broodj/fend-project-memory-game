@@ -1,7 +1,15 @@
 /*
  * Create a list that holds all of your cards
  */
-
+let cards = ['fa-diamond','fa-diamond',
+             'fa-paper-plane-o', 'fa-paper-plane-o',
+             'fa-bomb', 'fa-bomb',
+             'fa-leaf', 'fa-leaf',
+             'fa-bolt', 'fa-bolt',
+             'fa-square', 'fa-square',
+             'fa-bicycle', 'fa-bicycle',
+             'fa-anchor', 'fa-anchor'
+            ]
 
 /*
  * Display the cards on the page
@@ -9,6 +17,27 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+function initGame(){
+    //resetMoves();
+    //resetTimer();
+    //shuffleDeck();
+
+    var deck = document.querySelector('.deck');
+    var cardHTML = cards.map(function(card){
+        return generateCard(card);
+    });
+    //shuffle(deck);
+    deck.innerHTML = cardHTML.join('');
+}
+
+initGame();
+
+//programatically create a card
+function generateCard(card){
+    return `<li class='card'><i class='fa ${card}'></i></li>`;
+}
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -31,7 +60,9 @@ function shuffle(array) {
 const deck = document.querySelector('.deck');
 let openCards = [];
 let matched = 0;
+let moves = 0;
 const FINAL_PAIRS = 8;
+let movesText = document.querySelector('.moves');
 
 deck.addEventListener('click', function(event){
     let target = event.target;
@@ -91,11 +122,8 @@ function compareCards(){
                 toggleCard(openCards[1]);
                 clearArray();
             }, 1000)
-        }
-        
+        }   
     }
-
-//
 }
 
 //push to array
