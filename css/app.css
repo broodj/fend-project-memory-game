@@ -80,11 +80,7 @@ h1 {
     background: #02ccba;
     font-size: 33px;
 }
-/*
-.deck .card.disabled {
-    pointer-events: none;
-}
-*/
+
 /*
  * Styles for the Score Panel
  */
@@ -110,4 +106,54 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+
+.modalBackground{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgb(0, 0, 0, 0.420);
+
+}
+.modalBody{
+    position: relative;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    transform: translate(-50%, -70%);
+    opacity: 1;
+}
+.modalTitle{
+    font-weight: bold;
+    padding-left: 125px;
+}
+.modalHeading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid gray;
+}
+.modalStats{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid gray;
+}
+.modalButtons{
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+}
+.modalButton{
+    width: 60px;
+    height: 30px;
+}
+
+.hide {
+    display:none;
 }
