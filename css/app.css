@@ -108,6 +108,13 @@ h1 {
     cursor: pointer;
 }
 
+div.modalContent > span {
+    margin: 20px;
+}
+
+div.modalContent > span.modalTime {
+    padding-left: 50px
+}
 
 .modalBackground{
     position: fixed;
@@ -141,8 +148,8 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
     border-bottom: 1px solid gray;
+    
 }
 .modalButtons{
     display: flex;
