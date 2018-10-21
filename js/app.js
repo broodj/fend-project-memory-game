@@ -18,19 +18,7 @@ let cards = ['fa-diamond','fa-diamond',
  *   - add each card's HTML to the page
  */
 
-function initGame(){
-    resetCards();
-    resetMoves();
 
-    var deck = document.querySelector('.deck');
-    var cardHTML = shuffle(cards).map(function(card){
-        return generateCard(card);
-    });
-
-    deck.innerHTML = cardHTML.join('');
-}
-
-initGame();
 
 //programatically create a card
 function generateCard(card){
@@ -60,15 +48,35 @@ let openCards = [];
 let matched = 0;
 let moves = 0;
 const FINAL_PAIRS = 8;
-let movesText = document.querySelector('.moves');
+let modalClose = document.querySelector('.modalClose');
+let moveCounter = document.querySelector('.moves');
+
+function initGame(){
+    resetCards();
+    resetMoves();
+
+    var deck = document.querySelector('.deck');
+    var cardHTML = shuffle(cards).map(function(card){
+        return generateCard(card);
+    });
+
+    deck.innerHTML = cardHTML.join('');
+}
+
+initGame();
 
 deck.addEventListener('click', function(event){
     let target = event.target;
 
-    if (isClickValid(target)){
-        //startTimer();
+    if (openCards.length <= 1){
+
+        if (isClickValid(target)){
+            //startTimer();
+        }
+        toggleCard(target);
+        pushToArray(target);
+        compareCards();
     }
-    toggleCard(target);
 });
 
 //check if a card can be clicked
@@ -90,16 +98,12 @@ function isClickValid(target){
 function toggleCard(target){
     target.classList.toggle('open');
     target.classList.toggle('show');
-    pushToArray(target);
-    compareCards();
 }
 
 //check for match
 function compareCards(){
 //if openCards has exactly 2 items
     if(openCards.length === 2){
-        // add 1 to move Counter
-        //addMoves();
         //check star rating
         //checkMoves();
         //if the first element of cardOne is EXACTLY the same as cardTwo
@@ -123,7 +127,8 @@ function compareCards(){
                 toggleCard(openCards[1]);
                 clearArray();
             }, 1000)
-        }   
+        } 
+        addMove();  
     }
 }
 
@@ -131,7 +136,7 @@ function compareCards(){
 function gameOver(){
     toggleModal();
     resetCards();
-    resetMoves();
+    //resetMoves();
 }
 
 //reset classes of cards back to just card
@@ -148,10 +153,34 @@ function toggleModal(){
     modal.classList.toggle('hide');
 }
 
+modalClose.addEventListener('click',function(){
+    toggleModal();
+})
+
+let modalRetry = document.querySelector('.modalRestart');
+modalRetry.addEventListener('click', function(){
+    initGame();
+})
+
+let restart = document.querySelector('.restart');
+
+restart.addEventListener('click', function(){
+    initGame();
+})
+
 function resetMoves(){
-    let moveCounter = document.querySelector('.moves');
-    moveCounter.innerText = 0;
+    let moves = document.querySelector('.moves');
+    moves = 0;
+    moves.innerHTML = 0;
 }
+
+function addMove(){
+    moves++;
+    moveCounter.innerHTML = moves;
+    
+}
+
+//startTimer(){}
 
 //push to array
 function pushToArray(event){
