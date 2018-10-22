@@ -60,7 +60,7 @@ function initGame(){
         return generateCard(card);
     });
 
-    deck.innerHTML = cardHTML.join('');
+    deck.innerHTML = cardHTML.join('');   
 }
 
 initGame();
@@ -169,9 +169,8 @@ restart.addEventListener('click', function(){
 })
 
 function resetMoves(){
-    let moves = document.querySelector('.moves');
     moves = 0;
-    moves.innerHTML = 0;
+    moveCounter.innerHTML = moves;
 }
 
 function addMove(){
