@@ -50,6 +50,7 @@ let moves = 0;
 const FINAL_PAIRS = 8;
 let modalClose = document.querySelector('.modalClose');
 let moveCounter = document.querySelector('.moves');
+let timerOn = false;
 
 function initGame(){
     resetCards();
@@ -73,7 +74,10 @@ deck.addEventListener('click', function(event){
     if (openCards.length <= 1){
 
         if (isClickValid(target)){
-            startTimer();
+            if (!timerOn){
+                timerOn = true;
+                startTimer();
+            }
         }
         toggleCard(target);
         pushToArray(target);
@@ -84,12 +88,11 @@ deck.addEventListener('click', function(event){
 });
 
 let clock = document.querySelector('.clock');
-let seconds = 0, minutes = 0, timerOn;
+let seconds = 0, minutes = 0;
 
 function timer(){
     seconds++
-    clock.innerHTML = '00: ' + seconds;
-
+    clock.innerHTML = minutes + ':' + seconds;
     if (seconds == 60){
         seconds = 0;
         minutes++;
@@ -165,6 +168,7 @@ function compareCards(){
 function gameOver(){
     toggleModal();
     resetCards();
+    endTimer();
     //resetMoves();
 }
 
@@ -205,6 +209,8 @@ function resetMoves(){
 function addMove(){
     moves++;
     moveCounter.innerHTML = moves;
+
+    
     
 }
 
