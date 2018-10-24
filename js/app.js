@@ -73,13 +73,40 @@ deck.addEventListener('click', function(event){
     if (openCards.length <= 1){
 
         if (isClickValid(target)){
-            //startTimer();
+            startTimer();
         }
         toggleCard(target);
         pushToArray(target);
         compareCards();
+
+        
     }
 });
+
+let clock = document.querySelector('.clock');
+let seconds = 0, minutes = 0, timerOn;
+
+function timer(){
+    seconds++
+    clock.innerHTML = '00: ' + seconds;
+
+    if (seconds == 60){
+        seconds = 0;
+        minutes++;
+        clock.innerHTML = minutes + ":" + seconds;
+        
+    }
+    
+    console.log('firing');
+}
+
+function startTimer(){
+    t = setInterval(timer, 1000);
+}
+
+function endTimer(){
+    clearInterval(t);
+}
 
 //check if a card can be clicked
 function isClickValid(target){
@@ -192,26 +219,7 @@ function clearArray(){
     openCards = [];
 }
 
-function timer(){
-    let seconds = 0;
-    let minutes = 0;
-    const timer = document.querySelector('.clock');
 
-    while (timerIsOn = true){
-        seconds++
-        timer.innerHTML = minutes + ':' + seconds;
-
-        if (seconds == 60){
-            seconds = 0;
-            minutes++;
-            timer.innerHTML = minutes + ':' + seconds;
-        }
-    }
-}
-
-function startTimer(){
-    setTimeout(timer(), 1000);
-}
 
 
 //
