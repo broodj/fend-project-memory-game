@@ -54,16 +54,18 @@ let moveCounter = document.querySelector('.moves');
 function initGame(){
     resetCards();
     resetMoves();
-
-    var deck = document.querySelector('.deck');
-    var cardHTML = shuffle(cards).map(function(card){
-        return generateCard(card);
-    });
-
-    deck.innerHTML = cardHTML.join('');   
+    shuffleAndDisplay();  
 }
 
 initGame();
+
+function shuffleAndDisplay(){
+    let cardHTML = shuffle(cards).map(function(card){
+        return generateCard(card);
+    });
+
+    deck.innerHTML = cardHTML.join('');
+}
 
 deck.addEventListener('click', function(event){
     let target = event.target;
@@ -188,6 +190,27 @@ function pushToArray(event){
 
 function clearArray(){
     openCards = [];
+}
+
+function timer(){
+    let seconds = 0;
+    let minutes = 0;
+    const timer = document.querySelector('.clock');
+
+    while (timerIsOn = true){
+        seconds++
+        timer.innerHTML = minutes + ':' + seconds;
+
+        if (seconds == 60){
+            seconds = 0;
+            minutes++;
+            timer.innerHTML = minutes + ':' + seconds;
+        }
+    }
+}
+
+function startTimer(){
+    setTimeout(timer(), 1000);
 }
 
 
