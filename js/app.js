@@ -101,8 +101,6 @@ function timer(){
         clock.innerHTML = minutes + ":" + seconds;
         
     }
-    
-    console.log('firing');
 }
 
 function startTimer(){
