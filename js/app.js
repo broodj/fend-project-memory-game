@@ -78,10 +78,12 @@ deck.addEventListener('click', function(event){
                 timerOn = true;
                 startTimer();
             }
+
+            toggleCard(target);
+            pushToArray(target);
+            compareCards();
         }
-        toggleCard(target);
-        pushToArray(target);
-        compareCards();
+        
 
         
     }
@@ -164,12 +166,24 @@ function compareCards(){
     }
 }
 
+
+function populateModal(){
+    let timeCount = document.querySelector('.modalTime');
+    let starCount = document.querySelector('.modalStars');
+    let movesCount = document.querySelector('.modalMoves');
+
+    movesCount.innerHTML = `${moves} moves`;
+    starCount.innerHTML  = `${star} moves`;
+    timeCount.innerHTML = `${time}`;
+
+}
+
 //gameOver function
 function gameOver(){
+    populateModal();
     toggleModal();
     resetCards();
     endTimer();
-    //resetMoves();
 }
 
 //reset classes of cards back to just card
