@@ -50,6 +50,7 @@ let moves = 0;
 const FINAL_PAIRS = 8;
 let modalClose = document.querySelector('.modalClose');
 let moveCounter = document.querySelector('.moves');
+let stars = document.querySelectorAll('.fa-star');
 let timerOn = false;
 
 function initGame(){
@@ -83,9 +84,6 @@ deck.addEventListener('click', function(event){
             pushToArray(target);
             compareCards();
         }
-        
-
-        
     }
 });
 
@@ -112,8 +110,6 @@ function endTimer(){
 }
 
 function starCheck(){
-    let stars = document.querySelectorAll('.fa-star');
-
     stars.forEach(function(star){
         if (moves >= 10){
             stars[0].classList.add('hide');
@@ -164,7 +160,6 @@ function compareCards(){
             if (matched === FINAL_PAIRS){
                 gameOver();
             }
-            console.log('match');
         } else {
             setTimeout(function(event){
                 toggleCard(openCards[0]);
@@ -180,13 +175,19 @@ function compareCards(){
 
 function populateModal(){
     let timeCount = document.querySelector('.modalTime');
-    let starCount = document.querySelector('.modalStars');
     let movesCount = document.querySelector('.modalMoves');
+    let starCount = document.querySelector('.modalStars');
 
-    movesCount.innerHTML = `Moves taken: ${moves}`;
-    //starCount.innerHTML  = `Rating: ${star}`;
-    timeCount.innerHTML = `Time: ${minutes}:${seconds}`;
+    if (moves <= 9){
+        starCount.innerHTML = `Star Rating: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>`;
+    }
 
+    if (moves <= 20){
+        starCount.innerHTML = `Star Rating: <i class="fa fa-star"></i><i class="fa fa-star"></i>`;
+    }
+
+    movesCount.innerHTML = 'Moves taken: ' + moves;
+    timeCount.innerHTML = 'Time: ' + minutes + ':' + seconds;
 }
 
 //gameOver function
@@ -234,12 +235,8 @@ function resetMoves(){
 function addMove(){
     moves++;
     moveCounter.innerHTML = moves;
-
-    
-    
 }
 
-//startTimer(){}
 
 //push to array
 function pushToArray(event){
