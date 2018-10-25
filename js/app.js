@@ -111,6 +111,19 @@ function endTimer(){
     clearInterval(t);
 }
 
+function starCheck(){
+    let stars = document.querySelectorAll('.fa-star');
+
+    stars.forEach(function(star){
+        if (moves >= 10){
+            stars[0].classList.add('hide');
+        }
+
+        if (moves >= 20){
+            stars[1].classList.add('hide');
+        }
+    });
+}
 
 //check if a card can be clicked
 function isClickValid(target){
@@ -137,8 +150,6 @@ function toggleCard(target){
 function compareCards(){
 //if openCards has exactly 2 items
     if(openCards.length === 2){
-        //check star rating
-        //checkMoves();
         //if the first element of cardOne is EXACTLY the same as cardTwo
         if(openCards[0].firstElementChild.className === openCards[1].firstElementChild.className){
             //toggle match for cardOne
@@ -161,7 +172,8 @@ function compareCards(){
                 clearArray();
             }, 1000)
         } 
-        addMove();  
+        addMove();
+        starCheck();  
     }
 }
 
