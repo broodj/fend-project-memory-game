@@ -111,6 +111,7 @@ function endTimer(){
     clearInterval(t);
 }
 
+
 //check if a card can be clicked
 function isClickValid(target){
     //evaluate:
@@ -170,9 +171,9 @@ function populateModal(){
     let starCount = document.querySelector('.modalStars');
     let movesCount = document.querySelector('.modalMoves');
 
-    movesCount.innerHTML = `${moves} moves`;
-    starCount.innerHTML  = `${star} moves`;
-    timeCount.innerHTML = `${time}`;
+    movesCount.innerHTML = `Moves taken: ${moves}`;
+    //starCount.innerHTML  = `Rating: ${star}`;
+    timeCount.innerHTML = `Time: ${minutes}:${seconds}`;
 
 }
 
