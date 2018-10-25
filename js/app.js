@@ -186,6 +186,10 @@ function populateModal(){
         starCount.innerHTML = `Star Rating: <i class="fa fa-star"></i><i class="fa fa-star"></i>`;
     }
 
+    if (moves >= 21){
+        starCount.innerHTML = `Star Rating: <i class="fa fa-star">`;
+    }
+
     movesCount.innerHTML = 'Moves taken: ' + moves;
     timeCount.innerHTML = 'Time: ' + minutes + ':' + seconds;
 }
