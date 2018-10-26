@@ -56,6 +56,7 @@ let timerOn = false;
 function initGame(){
     resetCards();
     resetMoves();
+    resetTimer();
     shuffleAndDisplay();  
 }
 
@@ -92,11 +93,18 @@ let seconds = 0, minutes = 0;
 
 function timer(){
     seconds++
-    clock.innerHTML = minutes + ':' + seconds;
+    if (seconds < 10){
+        clock.innerHTML = "0" + minutes + ':0' + seconds;
+    } else {
+        clock.innerHTML = "0" + minutes + ':' + seconds;
+    }
+
     if (seconds == 60){
         seconds = 0;
         minutes++;
-        clock.innerHTML = minutes + ":" + seconds;
+        clock.innerHTML = "0" + minutes + ":" + seconds;
+    
+       
         
     }
 }
@@ -107,6 +115,11 @@ function startTimer(){
 
 function endTimer(){
     clearInterval(t);
+}
+
+function resetTimer(){
+    let clock = document.querySelector('.clock');
+    clock.innerHTML = '00:00';
 }
 
 function starCheck(){
@@ -199,7 +212,8 @@ function gameOver(){
     populateModal();
     toggleModal();
     resetCards();
-    endTimer();
+    endTimer(t);
+    resetTimer();
 }
 
 //reset classes of cards back to just card
@@ -222,6 +236,7 @@ modalClose.addEventListener('click',function(){
 
 let modalRetry = document.querySelector('.modalRestart');
 modalRetry.addEventListener('click', function(){
+    toggleModal();
     initGame();
 })
 
@@ -229,6 +244,7 @@ let restart = document.querySelector('.restart');
 
 restart.addEventListener('click', function(){
     initGame();
+    
 })
 
 function resetMoves(){
