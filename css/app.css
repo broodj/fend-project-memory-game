@@ -109,11 +109,22 @@ h1 {
 }
 
 div.modalContent > span {
-    margin: 20px;
+    margin: 0px;
+    display: inline;
+    padding-left:10px;
+    padding-right:10px;
 }
 
 div.modalContent > span.modalTime {
-    padding-left: 50px
+    padding-left: 25px;
+}
+
+div.modalContent > span.modalStars {
+    padding-left: 20px;
+}
+
+div.modalContent > span.modalMoves {
+    padding-right: 10px;
 }
 
 .modalBackground{
