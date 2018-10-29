@@ -115,6 +115,9 @@ function startTimer(){
 
 function endTimer(){
     clearInterval(t);
+    seconds = 0;
+    minutes = 0;
+    timerOn = false;
 }
 
 function resetTimer(){
