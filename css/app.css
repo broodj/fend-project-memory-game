@@ -79,6 +79,8 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    animation-name: enlarge;
+    animation-duration: .75s;
 }
 
 /*
@@ -174,4 +176,19 @@ div.modalContent > span.modalMoves {
 
 .hide {
     display:none;
+}
+
+
+
+@keyframes englarge {
+    from {
+        transform: scale(1.0,1.0);
+        
+    }
+    50% {
+        transform: scale(1.45,1.45);
+    }
+    to {
+        transform: scale(1.0,1.0);
+    }
 }
