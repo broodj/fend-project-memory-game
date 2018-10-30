@@ -152,6 +152,8 @@ function isClickValid(target){
     )
 }
 
+
+
 //show the card
 function toggleCard(target){
     target.classList.toggle('open');
@@ -177,6 +179,8 @@ function compareCards(){
                 gameOver();
             }
         } else {
+            openCards[0].classList.toggle('noMatch');
+            openCards[1].classList.toggle('noMatch');
             setTimeout(function(event){
                 toggleCard(openCards[0]);
                 toggleCard(openCards[1]);

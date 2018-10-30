@@ -83,6 +83,10 @@ h1 {
     animation-duration: .75s;
 }
 
+.deck .card.noMatch {
+    animation-name: shake;
+    animation-duration: .75s;
+}
 /*
  * Styles for the Score Panel
  */
@@ -180,7 +184,7 @@ div.modalContent > span.modalMoves {
 
 
 
-@keyframes englarge {
+@keyframes enlarge {
     from {
         transform: scale(1.0,1.0);
         
@@ -190,5 +194,23 @@ div.modalContent > span.modalMoves {
     }
     to {
         transform: scale(1.0,1.0);
+    }
+}
+
+@keyframes shake {
+    from {
+        transform: translateX(0px);
+    }
+    25% {
+        transform: translateX(50px);
+    }
+    50% {
+        transform: translateX(0px);
+    }
+    75% {
+        transform: translateX(50px);
+    }
+    to {
+        transform: translateX(0px);
     }
 }
