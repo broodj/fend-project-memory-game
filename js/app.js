@@ -158,6 +158,8 @@ function isClickValid(target){
 function toggleCard(target){
     target.classList.toggle('open');
     target.classList.toggle('show');
+
+
 }
 
 //check for match
@@ -184,6 +186,8 @@ function compareCards(){
             setTimeout(function(event){
                 toggleCard(openCards[0]);
                 toggleCard(openCards[1]);
+                openCards[0].classList.toggle('noMatch');
+                openCards[1].classList.toggle('noMatch');
                 clearArray();
             }, 1000)
         } 
@@ -250,8 +254,8 @@ modalRetry.addEventListener('click', function(){
 let restart = document.querySelector('.restart');
 
 restart.addEventListener('click', function(){
+    endTimer();
     initGame();
-    
 })
 
 function resetMoves(){
