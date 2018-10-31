@@ -1,6 +1,4 @@
-/*
- * Create a list that holds all of your cards
- */
+//Game tiles
 let cards = ['fa-diamond','fa-diamond',
              'fa-paper-plane-o', 'fa-paper-plane-o',
              'fa-bomb', 'fa-bomb',
@@ -10,21 +8,33 @@ let cards = ['fa-diamond','fa-diamond',
              'fa-bicycle', 'fa-bicycle',
              'fa-anchor', 'fa-anchor'
             ]
+//game variables
+const FINAL_PAIRS = 8;
+const deck = document.querySelector('.deck');
+let openCards = [];
+let matched = 0;
+let moves = 0;
+let timerOn = false;
+let seconds = 0, minutes = 0;
+let clock = document.querySelector('.clock');
+let modalClose = document.querySelector('.modalClose');
+let moveCounter = document.querySelector('.moves');
+let stars = document.querySelectorAll('.fa-star');
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+function initGame(){
+    resetCards();
+    resetStars();
+    resetMoves();
+    resetTimer();
+    shuffleAndDisplay();  
+}    
 
-
+initGame();
 
 //programatically create a card
 function generateCard(card){
     return `<li class='card'><i class='fa ${card}'></i></li>`;
 }
-
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -40,27 +50,6 @@ function shuffle(array) {
 
     return array;
 }
-
-
-
-const deck = document.querySelector('.deck');
-let openCards = [];
-let matched = 0;
-let moves = 0;
-const FINAL_PAIRS = 8;
-let modalClose = document.querySelector('.modalClose');
-let moveCounter = document.querySelector('.moves');
-let stars = document.querySelectorAll('.fa-star');
-let timerOn = false;
-
-function initGame(){
-    resetCards();
-    resetMoves();
-    resetTimer();
-    shuffleAndDisplay();  
-}
-
-initGame();
 
 function shuffleAndDisplay(){
     let cardHTML = shuffle(cards).map(function(card){
@@ -88,9 +77,6 @@ deck.addEventListener('click', function(event){
     }
 });
 
-let clock = document.querySelector('.clock');
-let seconds = 0, minutes = 0;
-
 function timer(){
     seconds++
     if (seconds < 10){
@@ -103,9 +89,6 @@ function timer(){
         seconds = 0;
         minutes++;
         clock.innerHTML = "0" + minutes + ":" + seconds;
-    
-       
-        
     }
 }
 
@@ -158,8 +141,6 @@ function isClickValid(target){
 function toggleCard(target){
     target.classList.toggle('open');
     target.classList.toggle('show');
-
-
 }
 
 //check for match
@@ -196,7 +177,6 @@ function compareCards(){
     }
 }
 
-
 function populateModal(){
     let timeCount = document.querySelector('.modalTime');
     let movesCount = document.querySelector('.modalMoves');
@@ -205,11 +185,9 @@ function populateModal(){
     if (moves <= 9){
         starCount.innerHTML = `Star Rating: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>`;
     }
-
     if (moves <= 20){
         starCount.innerHTML = `Star Rating: <i class="fa fa-star"></i><i class="fa fa-star"></i>`;
     }
-
     if (moves >= 21){
         starCount.innerHTML = `Star Rating: <i class="fa fa-star">`;
     }
@@ -235,6 +213,13 @@ function resetCards(){
     }
 }
 
+function resetStars(){
+    const stars = document.querySelectorAll('.stars li');
+    for (let star of stars){
+        star.className = '';
+    }
+}
+
 //toggle display of congratulations modal
 function toggleModal(){
     let modal = document.querySelector('.modalBackground');
@@ -256,6 +241,7 @@ let restart = document.querySelector('.restart');
 restart.addEventListener('click', function(){
     endTimer();
     initGame();
+
 })
 
 function resetMoves(){
@@ -267,7 +253,6 @@ function addMove(){
     moves++;
     moveCounter.innerHTML = moves;
 }
-
 
 //push to array
 function pushToArray(event){
