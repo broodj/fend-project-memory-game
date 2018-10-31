@@ -8,6 +8,7 @@ let cards = ['fa-diamond','fa-diamond',
              'fa-bicycle', 'fa-bicycle',
              'fa-anchor', 'fa-anchor'
             ]
+
 //game variables
 const FINAL_PAIRS = 8;
 const deck = document.querySelector('.deck');
@@ -214,10 +215,9 @@ function resetCards(){
 }
 
 function resetStars(){
-    const stars = document.querySelectorAll('.stars li');
-    for (let star of stars){
-        star.className = '';
-    }
+    stars[0].classList.remove('hide');
+    stars[1].classList.remove('hide');
+    stars[2].classList.remove('hide');
 }
 
 //toggle display of congratulations modal
